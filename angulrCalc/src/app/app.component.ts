@@ -8,7 +8,9 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angulrCalc';
+  title = 'angulrCalcTest';
+
+  contacts = [];
 
   constructor(private apiService: ApiService){}
 
@@ -16,7 +18,9 @@ export class AppComponent {
   ngOnInit(){
     this.apiService.getContacts().subscribe((res)=>{
       console.log('This was called!!')
-      console.log(res);      
+      this.contacts = res;
+      console.log(this.contacts);  
+
     });
   }
 
