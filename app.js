@@ -7,6 +7,10 @@ var path = require('path');
 
 var app = express();
 
+//adding middleware
+
+app.use(cors());
+
 //always add body parser here only, not below route line always.
 app.use(bodyparser.json());
 
@@ -35,16 +39,14 @@ mongoose.connection.on('error', (err)=>{
 
 const port = 3000;
 
-//adding middleware
-
-app.use(cors());
-
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 //testing Server
 
 app.get('/',(req, res)=>{
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
     res.send('foobar');
 })
 
